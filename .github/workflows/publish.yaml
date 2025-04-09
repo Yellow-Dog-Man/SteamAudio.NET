@@ -3,8 +3,8 @@ name: "Publish SteamAudio.NET"
 on:
   workflow_dispatch:
     inputs:
-      bindingsVersion:
-        description: 'Bindings Version'
+      version:
+        description: 'Assembly Version'
         required: true
   release:
     types: [published]
