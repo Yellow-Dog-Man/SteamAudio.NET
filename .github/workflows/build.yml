@@ -24,10 +24,17 @@ jobs:
 
       - name: Build project
         run: |
-          dotnet publish -c Release
+          dotnet pack -c Release ${{ github.workspace }}/Src/SteamAudio.NET.csproj
+          dotnet pack -c Release ${{ github.workspace }}/Natives/SteamAudio.NET.Natives.csproj
       
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
         with:
           name: steamaudio-net
           path: ${{ github.workspace  }}/SteamAudio.NET/bin/Release/
+      
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: steamaudio-net-natives
+          path: ${{ github.workspace  }}/SteamAudio.NET.Natives/bin/Release/
