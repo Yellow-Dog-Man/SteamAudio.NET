@@ -34,10 +34,10 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: steamaudio-net
-          path: ${{ github.workspace  }}Src/bin/Release/
+          path: ${{ github.workspace  }}/Src/bin/Release/
       
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
         with:
           name: steamaudio-net-natives
-          path: ${{ github.workspace  }}Natives/bin/Release/
+          path: ${{ github.workspace  }}/Natives/bin/Release/
