@@ -15,7 +15,7 @@
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 
 		<!-- Metadata -->
-		<PackageId>SteamAudio.NET.Natives</PackageId>
+		<PackageId>YellowDogMan.SteamAudio.NET.Natives</PackageId>
 		<Version>$(NativesVersion)</Version>
 		<Authors>Valve Software, Mirsario</Authors>
 		<Description>Valve Software's Steam Audio (Phonon) natives packaged for NuGet</Description>

@@ -20,7 +20,7 @@
 		<GenerateDocumentationFile>True</GenerateDocumentationFile>
 
 		<!-- Metadata -->
-		<PackageId>SteamAudio.NET</PackageId>
+		<PackageId>YellowDogMan.SteamAudio.NET</PackageId>
 		<Version>$(BindingsVersion)</Version>
 		<Authors>Mirsario</Authors>
 		<Description>C#-friendly P/Invoke .NET bindings for Valve Software's Steam Audio (Phonon)</Description>
