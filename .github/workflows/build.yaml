@@ -1,0 +1,43 @@
+name: "Build"
+
+on:
+  push:
+    branches:
+      - github-actions
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 9.0.x
+
+      - name: Print
+        run: |
+          echo ${{ github.workspace }}
+
+      - name: Build project
+        run: |
+          dotnet publish -c Release ${{ github.workspace }}/Src/SteamAudio.NET.csproj
+          dotnet publish -c Release ${{ github.workspace }}/Natives/SteamAudio.NET.Natives.csproj
+          dotnet pack -c Release ${{ github.workspace }}/Src/SteamAudio.NET.csproj
+          dotnet pack -c Release ${{ github.workspace }}/Natives/SteamAudio.NET.Natives.csproj
+      
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: steamaudio-net
+          path: ${{ github.workspace  }}/Src/bin/Release/
+      
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: steamaudio-net-natives
+          path: ${{ github.workspace  }}/Natives/bin/Release/
