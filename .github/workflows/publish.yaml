@@ -1,0 +1,39 @@
+name: "Publish SteamAudio.NET"
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Assembly Version'
+        required: true
+  release:
+    types: [published]
+
+
+jobs:
+  publish:
+    env:
+      VERSION: ${{ github.event.release.tag_name || github.event.inputs.version }}
+    
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 9.0.x
+
+      - name: Build project
+        run: |
+          dotnet publish -c Release ${{ github.workspace }}/Src/SteamAudio.NET.csproj
+          dotnet publish -c Release ${{ github.workspace }}/Natives/SteamAudio.NET.Natives.csproj
+          dotnet pack -c Release ${{ github.workspace }}/Src/SteamAudio.NET.csproj
+          dotnet pack -c Release ${{ github.workspace }}/Natives/SteamAudio.NET.Natives.csproj
+
+      - name: Nuget Publish
+        run: dotnet nuget push ${{ github.workspace }}/Src/bin/Release/*.nupkg -k ${{ secrets.NUGET_TOKEN }} -s https://api.nuget.org/v3/index.json
+      
+      - name: Nuget Publish
+        run: dotnet nuget push ${{ github.workspace }}/Natives/bin/Release/*.nupkg -k ${{ secrets.NUGET_TOKEN }} -s https://api.nuget.org/v3/index.json
