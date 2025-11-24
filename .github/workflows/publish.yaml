@@ -27,8 +27,8 @@ jobs:
 
       - name: Build project
         run: |
-          dotnet publish -c Release ${{ github.workspace }}/Src/SteamAudio.NET.csproj
-          dotnet publish -c Release ${{ github.workspace }}/Natives/SteamAudio.NET.Natives.csproj
+          dotnet publish -c Release ${{ github.workspace }}/Src/SteamAudio.NET.csproj -p:Version=${{ env.VERSION }}
+          dotnet publish -c Release ${{ github.workspace }}/Natives/SteamAudio.NET.Natives.csproj -p:Version=${{ env.VERSION }}
           dotnet pack -c Release ${{ github.workspace }}/Src/SteamAudio.NET.csproj -p:Version=${{ env.VERSION }}
           dotnet pack -c Release ${{ github.workspace }}/Natives/SteamAudio.NET.Natives.csproj -p:Version=${{ env.VERSION }}
 
