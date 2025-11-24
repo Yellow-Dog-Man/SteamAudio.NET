@@ -29,8 +29,8 @@ jobs:
         run: |
           dotnet publish -c Release ${{ github.workspace }}/Src/SteamAudio.NET.csproj
           dotnet publish -c Release ${{ github.workspace }}/Natives/SteamAudio.NET.Natives.csproj
-          dotnet pack -c Release ${{ github.workspace }}/Src/SteamAudio.NET.csproj
-          dotnet pack -c Release ${{ github.workspace }}/Natives/SteamAudio.NET.Natives.csproj
+          dotnet pack -c Release ${{ github.workspace }}/Src/SteamAudio.NET.csproj -p:Version=${{ env.VERSION }}
+          dotnet pack -c Release ${{ github.workspace }}/Natives/SteamAudio.NET.Natives.csproj -p:Version=${{ env.VERSION }}
 
       - name: Nuget Publish
         run: dotnet nuget push ${{ github.workspace }}/Src/bin/Release/*.nupkg -k ${{ secrets.NUGET_TOKEN }} -s https://api.nuget.org/v3/index.json
