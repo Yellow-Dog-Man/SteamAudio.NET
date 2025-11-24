@@ -39,6 +39,7 @@
 		<Content Include="..\Natives\steamaudio\lib\osx\**" PackagePath="runtimes\osx-universal\native\%(RecursiveDir)%(Filename)%(Extension)" />
 		<Content Include="..\Natives\steamaudio\lib\windows-x64\**" PackagePath="runtimes\win-x64\native\%(RecursiveDir)%(Filename)%(Extension)" />
 		<Content Include="..\Natives\steamaudio\lib\windows-x86\**" PackagePath="runtimes\win-x86\native\%(RecursiveDir)%(Filename)%(Extension)" />
+		<Content Include="..\Natives\unsupported\arm\libphonon.so" PackagePath="runtimes\linux-arm64\native" />
 	</ItemGroup>
 
 </Project>
